@@ -1,9 +1,11 @@
 plugins {
     kotlin("multiplatform") version "1.3.70"
+    id("maven-publish")
 }
 
+
 group = "org.github.mikibemiki"
-version = "0.0.1-alpha03"
+version = "0.0.1-alpha04"
 
 repositories {
     mavenCentral()
@@ -25,4 +27,8 @@ kotlin {
             }
         }
     }
+}
+
+task("install") {
+    dependsOn("publishToMavenLocal")
 }
