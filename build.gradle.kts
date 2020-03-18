@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "org.github.mikibemiki"
-version = "0.0.1-alpha01"
+version = "0.0.1-alpha03"
 
 repositories {
     mavenCentral()
