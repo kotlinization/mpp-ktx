@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "org.github.mikibemiki"
-version = "0.0.1"
+version = "0.0.1-alpha01"
 
 repositories {
     mavenCentral()
@@ -15,6 +15,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
             }
         }
         val commonTest by getting {
