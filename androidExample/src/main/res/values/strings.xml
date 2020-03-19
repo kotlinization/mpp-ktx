@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android example</string>
+    <string name="start_service_example">Start service example</string>
+</resources>
