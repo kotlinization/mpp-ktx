@@ -4,6 +4,7 @@ buildscript {
     repositories {
         mavenCentral()
         google()
+        jcenter()
     }
     dependencies {
         classpath("com.android.tools.build:gradle:3.6.1")
@@ -14,6 +15,7 @@ allprojects {
     repositories {
         mavenCentral()
         google()
+        jcenter()
     }
 }
 
@@ -27,7 +29,7 @@ apply {
 }
 
 group = "org.github.MikiBeMiki"
-version = "0.1.0-alpha12"
+version = "0.1.0-alpha13"
 
 repositories {
     mavenCentral()
