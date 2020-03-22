@@ -1,10 +1,19 @@
+import com.android.build.gradle.LibraryExtension
+
 buildscript {
     repositories {
         mavenCentral()
         google()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.5.3")
+        classpath("com.android.tools.build:gradle:3.6.1")
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
     }
 }
 
@@ -18,7 +27,7 @@ apply {
 }
 
 group = "org.github.MikiBeMiki"
-version = "0.1.0-alpha10"
+version = "0.1.0-alpha12"
 
 repositories {
     mavenCentral()
@@ -26,7 +35,7 @@ repositories {
 
 val coroutinesVersion = "1.3.5"
 
-the<com.android.build.gradle.LibraryExtension>().apply {
+the<LibraryExtension>().apply {
     compileSdkVersion(29)
     buildToolsVersion = "29.0.3"
     defaultConfig {
