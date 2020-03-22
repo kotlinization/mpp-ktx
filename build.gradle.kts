@@ -4,7 +4,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.6.1")
+        classpath("com.android.tools.build:gradle:3.5.3")
     }
 }
 
@@ -18,7 +18,7 @@ apply {
 }
 
 group = "org.github.MikiBeMiki"
-version = "0.1.0-alpha09"
+version = "0.1.0-alpha10"
 
 repositories {
     mavenCentral()
@@ -34,6 +34,7 @@ the<com.android.build.gradle.LibraryExtension>().apply {
     }
     lintOptions {
         isAbortOnError = false
+        isCheckReleaseBuilds = false
     }
 }
 
