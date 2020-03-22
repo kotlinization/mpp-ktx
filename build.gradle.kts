@@ -18,7 +18,7 @@ apply {
 }
 
 group = "org.github.MikiBeMiki"
-version = "0.1.0-alpha08"
+version = "0.1.0-alpha09"
 
 repositories {
     mavenCentral()
@@ -31,6 +31,9 @@ the<com.android.build.gradle.LibraryExtension>().apply {
     buildToolsVersion = "29.0.3"
     defaultConfig {
         minSdkVersion(16)
+    }
+    lintOptions {
+        isAbortOnError = false
     }
 }
 
