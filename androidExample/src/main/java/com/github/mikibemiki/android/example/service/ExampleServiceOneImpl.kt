@@ -7,11 +7,23 @@ import android.os.Binder
 import android.util.Log
 import com.github.mikibemiki.mppktx.service.BoundService
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.isActive
 import kotlin.random.Random
 
 private const val TAG = "ExampleService"
 
-class ExampleServiceOne : Service() {
+class ExampleServiceOneImpl : Service(), ExampleServiceOne {
+
+    override val timeFlow: Flow<String>
+        get() = channelFlow {
+            while (isActive) {
+                send(System.currentTimeMillis().toString())
+                delay(1000)
+            }
+        }
 
     private val exampleBinder by lazy {
         ExampleBinder(this)
@@ -27,17 +39,19 @@ class ExampleServiceOne : Service() {
         return super.onUnbind(intent)
     }
 
-    fun generateString(): String {
+    override fun generateString(): String {
         return Random.nextInt().toString()
     }
 }
 
-class ExampleBinder(private val exampleServiceOne: ExampleServiceOne) : Binder() {
+interface ExampleServiceOne {
 
-    fun generateString(): String {
-        return exampleServiceOne.generateString()
-    }
+    val timeFlow: Flow<String>
+
+    fun generateString(): String
 }
+
+class ExampleBinder(private val exampleServiceOne: ExampleServiceOne) : Binder(), ExampleServiceOne by exampleServiceOne
 
 class ExampleServiceBound(
     context: Context,
@@ -46,7 +60,7 @@ class ExampleServiceBound(
     context = context,
     scope = scope,
     binding = {
-        context.bindService(Intent(context, ExampleServiceOne::class.java), it, Service.BIND_AUTO_CREATE)
+        context.bindService(Intent(context, ExampleServiceOneImpl::class.java), it, Service.BIND_AUTO_CREATE)
     }
 )
 

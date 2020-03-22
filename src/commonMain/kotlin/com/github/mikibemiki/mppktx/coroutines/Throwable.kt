@@ -1,4 +1,4 @@
-package com.github.mikibemiki.coroutines.mppktx
+package com.github.mikibemiki.mppktx.coroutines
 
 import kotlinx.coroutines.CancellationException
 

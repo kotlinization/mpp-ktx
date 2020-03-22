@@ -24,7 +24,7 @@
         </activity>
 
         <service
-            android:name=".service.ExampleServiceOne"
+            android:name=".service.ExampleServiceOneImpl"
             android:enabled="true"
             android:exported="false" />
     </application>

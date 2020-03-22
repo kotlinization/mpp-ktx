@@ -4,7 +4,13 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.ServiceConnection
 import android.os.IBinder
+import com.github.mikibemiki.mppktx.coroutines.awaitNonNull
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.flatMapMerge
 
 open class BoundService<B : IBinder>(
     context: Context,
@@ -15,16 +21,16 @@ open class BoundService<B : IBinder>(
 
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceDisconnected(name: ComponentName?) {
-            deferrable = CompletableDeferred()
+            binderChannel.offer(null)
         }
 
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             @Suppress("UNCHECKED_CAST")
-            deferrable.complete(service as B)
+            binderChannel.offer(service as B)
         }
     }
 
-    private var deferrable: CompletableDeferred<B> = CompletableDeferred()
+    private val binderChannel = ConflatedBroadcastChannel<B?>()
 
     init {
         //Launch Job which waits until scope is canceled and then unbinds service
@@ -39,14 +45,24 @@ open class BoundService<B : IBinder>(
     }
 
     /**
-     * Waits [boundTimeout] for service to bind. If it wails throws
+     * Waits [boundTimeout] for service to bind. If it fails throws
      * [TimeoutCancellationException]
      */
     suspend operator fun <T> invoke(block: suspend B.() -> T): T {
         return withTimeout(boundTimeout) {
-            block(deferrable.await())
+            block(binderChannel.awaitNonNull())
         }
     }
 
+    /**
+     * Maps flows from service after connects or reconnects to resulting flow.
+     */
+    fun <T> mapFlow(block: suspend B.() -> Flow<T>): Flow<T> {
+        return binderChannel
+            .asFlow()
+            .flatMapMerge {
+                block(it ?: return@flatMapMerge emptyFlow<T>())
+            }
+    }
 }
 
