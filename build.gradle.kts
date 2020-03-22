@@ -18,7 +18,7 @@ apply {
 }
 
 group = "org.github.MikiBeMiki"
-version = "0.1.0-alpha03"
+version = "0.1.0-alpha04"
 
 repositories {
     mavenCentral()
@@ -81,4 +81,6 @@ kotlin {
 
 task("install") {
     dependsOn("publishToMavenLocal")
+    dependsOn("publishAndroidDebugPublicationToMavenLocal")
+    dependsOn("publishAndroidReleasePublicationToMavenLocal")
 }
