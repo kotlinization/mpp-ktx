@@ -9,6 +9,7 @@ import kotlinx.coroutines.*
 open class BoundService<B : IBinder>(
     context: Context,
     scope: CoroutineScope,
+    private val boundTimeout: Long = 1_000L,
     binding: (serviceConnection: ServiceConnection) -> Unit
 ) {
 
@@ -36,5 +37,16 @@ open class BoundService<B : IBinder>(
         }
         binding(serviceConnection)
     }
+
+    /**
+     * Waits [boundTimeout] for service to bind. If it wails throws
+     * [TimeoutCancellationException]
+     */
+    suspend operator fun <T> invoke(block: suspend B.() -> T): T {
+        return withTimeout(boundTimeout) {
+            block(deferrable.await())
+        }
+    }
+
 }
 

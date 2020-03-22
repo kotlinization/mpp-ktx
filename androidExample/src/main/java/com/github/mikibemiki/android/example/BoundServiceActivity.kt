@@ -1,27 +1,27 @@
 package com.github.mikibemiki.android.example
 
-import android.app.Application
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.lifecycleScope
 import com.github.mikibemiki.android.example.service.ExampleServiceBound
+import kotlinx.android.synthetic.main.activity_bound_service.*
+import kotlinx.coroutines.launch
 
 class BoundServiceActivity : AppCompatActivity() {
 
-    private val viewModel: BoundServiceViewModel by viewModels()
+    private val exampleServiceOne by lazy {
+        ExampleServiceBound(this, lifecycleScope)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bound_service)
-
+        generate.setOnClickListener {
+            lifecycleScope.launch {
+                generatedValue.text = exampleServiceOne {
+                    generateString()
+                }
+            }
+        }
     }
-}
-
-
-private class BoundServiceViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val exampleService = ExampleServiceBound(application, viewModelScope)
-
 }

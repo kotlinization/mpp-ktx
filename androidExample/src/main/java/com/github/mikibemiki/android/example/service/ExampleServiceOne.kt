@@ -7,13 +7,14 @@ import android.os.Binder
 import android.util.Log
 import com.github.mikibemiki.mppktx.service.BoundService
 import kotlinx.coroutines.CoroutineScope
+import kotlin.random.Random
 
 private const val TAG = "ExampleService"
 
 class ExampleServiceOne : Service() {
 
     private val exampleBinder by lazy {
-        ExampleBinder()
+        ExampleBinder(this)
     }
 
     override fun onBind(intent: Intent): ExampleBinder {
@@ -25,10 +26,17 @@ class ExampleServiceOne : Service() {
         Log.i(TAG, "Service unbound.")
         return super.onUnbind(intent)
     }
+
+    fun generateString(): String {
+        return Random.nextInt().toString()
+    }
 }
 
-class ExampleBinder : Binder() {
+class ExampleBinder(private val exampleServiceOne: ExampleServiceOne) : Binder() {
 
+    fun generateString(): String {
+        return exampleServiceOne.generateString()
+    }
 }
 
 class ExampleServiceBound(
