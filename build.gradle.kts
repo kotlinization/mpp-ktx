@@ -1,5 +1,8 @@
-
 buildscript {
+    repositories {
+        mavenCentral()
+        google()
+    }
     dependencies {
         classpath("com.android.tools.build:gradle:3.6.1")
     }
@@ -15,7 +18,7 @@ apply {
 }
 
 group = "org.github.MikiBeMiki"
-version = "0.1.0-alpha02"
+version = "0.1.0-alpha03"
 
 repositories {
     mavenCentral()
@@ -25,6 +28,7 @@ val coroutinesVersion = "1.3.5"
 
 the<com.android.build.gradle.LibraryExtension>().apply {
     compileSdkVersion(29)
+    buildToolsVersion = "29.0.3"
     defaultConfig {
         minSdkVersion(16)
     }
