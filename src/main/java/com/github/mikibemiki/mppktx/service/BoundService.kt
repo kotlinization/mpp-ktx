@@ -19,6 +19,25 @@ open class BoundService<B : IBinder>(
     binding: (serviceConnection: ServiceConnection) -> Unit
 ) {
 
+    companion object {
+
+        /**
+         * Creates service with temporary coroutine scope and cancels that scope
+         * as soon [block] is finished.
+         */
+        suspend fun <T, B : IBinder, S : BoundService<B>> withService(
+            boundService: (CoroutineScope) -> S,
+            block: suspend (S) -> T
+        ): T {
+            val scope = CoroutineScope(Dispatchers.IO)
+            try {
+                return block(boundService(scope))
+            } finally {
+                scope.cancel()
+            }
+        }
+    }
+
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceDisconnected(name: ComponentName?) {
             binderChannel.offer(null)
