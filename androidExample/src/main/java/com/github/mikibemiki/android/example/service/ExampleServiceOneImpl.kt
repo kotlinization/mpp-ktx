@@ -39,7 +39,7 @@ class ExampleServiceOneImpl : Service(), ExampleServiceOne {
         return super.onUnbind(intent)
     }
 
-    override fun generateString(): String {
+    override suspend fun generateString(): String {
         return Random.nextInt().toString()
     }
 }
@@ -48,7 +48,7 @@ interface ExampleServiceOne {
 
     val timeFlow: Flow<String>
 
-    fun generateString(): String
+    suspend fun generateString(): String
 }
 
 class ExampleBinder(private val exampleServiceOne: ExampleServiceOne) : Binder(), ExampleServiceOne by exampleServiceOne
