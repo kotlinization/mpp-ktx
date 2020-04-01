@@ -70,9 +70,10 @@ open class BoundService<B : IBinder>(
      * [TimeoutCancellationException]
      */
     suspend fun <T> invokeDelayed(block: suspend B.() -> T): T {
-        return withTimeout(boundTimeout) {
-            block(binderChannel.awaitNonNull())
+        val service = withTimeout(boundTimeout) {
+            binderChannel.awaitNonNull()
         }
+        return block(service)
     }
 
     /**
