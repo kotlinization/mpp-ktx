@@ -1,7 +1,7 @@
 package com.github.mikibemiki.mppktx.coroutines
 
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
-import kotlinx.coroutines.yield
+import kotlinx.coroutines.delay
 
 /**
  * Awaits until value in [this] channel is not null,
@@ -10,7 +10,7 @@ import kotlinx.coroutines.yield
 suspend fun <T> ConflatedBroadcastChannel<T?>.awaitNonNull(): T {
     var channelValue: T? = valueOrNull
     while (channelValue == null) {
-        yield()
+        delay(1)
         channelValue = valueOrNull
     }
     return channelValue

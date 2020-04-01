@@ -20,7 +20,7 @@ allprojects {
 }
 
 plugins {
-    kotlin("multiplatform") version "1.3.70"
+    kotlin("multiplatform") version "1.3.71"
     `maven-publish`
 }
 
@@ -29,7 +29,7 @@ apply {
 }
 
 group = "org.github.MikiBeMiki"
-version = "0.1.0-rc01"
+version = "0.1.0-rc02"
 
 repositories {
     mavenCentral()
