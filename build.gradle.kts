@@ -29,7 +29,7 @@ apply {
 }
 
 group = "org.github.MikiBeMiki"
-version = "0.1.0-rc04"
+version = "0.1.0-rc05"
 
 repositories {
     mavenCentral()

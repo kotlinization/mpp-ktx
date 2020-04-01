@@ -23,7 +23,7 @@ class BoundServiceActivity : AppCompatActivity() {
         generate.setOnClickListener {
             lifecycleScope.launch {
                 withService({ ExampleServiceBound(application, it) }) { exampleServiceBound ->
-                    generatedValue.text = exampleServiceBound {
+                    generatedValue.text = exampleServiceBound.invokeDelayed {
                         generateString()
                     }
                 }

@@ -69,7 +69,7 @@ open class BoundService<B : IBinder>(
      * Waits [boundTimeout] for service to bind. If it fails throws
      * [TimeoutCancellationException]
      */
-    suspend inline operator fun <T> invoke(crossinline block: suspend B.() -> T): T {
+    suspend fun <T> invokeDelayed(block: suspend B.() -> T): T {
         return withTimeout(boundTimeout) {
             block(binderChannel.awaitNonNull())
         }
