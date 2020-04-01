@@ -15,7 +15,8 @@ import kotlinx.coroutines.flow.flatMapMerge
 open class BoundService<B : IBinder>(
     context: Context,
     scope: CoroutineScope,
-    private val boundTimeout: Long = 1_000L,
+    @PublishedApi
+    internal val boundTimeout: Long = 1_000L,
     binding: (serviceConnection: ServiceConnection) -> Unit
 ) {
 
@@ -49,7 +50,8 @@ open class BoundService<B : IBinder>(
         }
     }
 
-    private val binderChannel = ConflatedBroadcastChannel<B?>()
+    @PublishedApi
+    internal val binderChannel = ConflatedBroadcastChannel<B?>()
 
     init {
         //Launch Job which waits until scope is canceled and then unbinds service
@@ -67,7 +69,7 @@ open class BoundService<B : IBinder>(
      * Waits [boundTimeout] for service to bind. If it fails throws
      * [TimeoutCancellationException]
      */
-    suspend operator fun <T> invoke(block: suspend B.() -> T): T {
+    suspend inline operator fun <T> invoke(crossinline block: B.() -> T): T {
         return withTimeout(boundTimeout) {
             block(binderChannel.awaitNonNull())
         }
