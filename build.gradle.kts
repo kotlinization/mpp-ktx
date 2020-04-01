@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.6.1")
+        classpath("com.android.tools.build:gradle:3.6.2")
     }
 }
 
@@ -29,7 +29,7 @@ apply {
 }
 
 group = "org.github.MikiBeMiki"
-version = "0.1.0-rc05"
+version = "0.1.0-rc06"
 
 repositories {
     mavenCentral()
