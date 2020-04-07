@@ -29,7 +29,7 @@ apply {
 }
 
 group = "org.github.MikiBeMiki"
-version = "0.1.0-rc07"
+version = "0.1.0-rc08"
 
 repositories {
     mavenCentral()
@@ -92,8 +92,4 @@ kotlin {
             }
         }
     }
-}
-
-task("install") {
-    dependsOn("publishToMavenLocal")
 }

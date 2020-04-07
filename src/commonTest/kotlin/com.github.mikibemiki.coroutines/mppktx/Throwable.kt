@@ -1,6 +1,6 @@
 package com.github.mikibemiki.coroutines.mppktx
 
-import com.github.mikibemiki.coroutines.mppktx.throwIfCanceled
+import com.github.mikibemiki.mppktx.coroutines.throwIfCanceled
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

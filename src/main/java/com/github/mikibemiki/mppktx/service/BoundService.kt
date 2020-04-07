@@ -77,6 +77,13 @@ open class BoundService<B : IBinder>(
     }
 
     /**
+     * Calls [invokeDelayed] with provided [block].
+     */
+    suspend inline operator fun <T> invoke(noinline block: suspend B.() -> T): T {
+        return invokeDelayed(block)
+    }
+
+    /**
      * Maps flows from service after connects or reconnects to resulting flow.
      */
     fun <T> mapFlow(block: suspend B.() -> Flow<T>): Flow<T> {
