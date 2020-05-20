@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.6.2")
+        classpath("com.android.tools.build:gradle:3.6.3")
     }
 }
 
@@ -20,7 +20,7 @@ allprojects {
 }
 
 plugins {
-    kotlin("multiplatform") version "1.3.71"
+    kotlin("multiplatform") version "1.3.72"
     `maven-publish`
 }
 
@@ -28,14 +28,14 @@ apply {
     plugin("com.android.library")
 }
 
-group = "org.github.MikiBeMiki"
-version = "0.1.0"
+group = "org.github.kotlinizer"
+version = "0.1.1"
 
 repositories {
     mavenCentral()
 }
 
-val coroutinesVersion = "1.3.5"
+val coroutinesVersion = "1.3.6"
 
 the<LibraryExtension>().apply {
     compileSdkVersion(29)

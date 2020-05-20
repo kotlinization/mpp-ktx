@@ -1,10 +1,10 @@
-package com.github.mikibemiki.android.example
+package com.github.kotlinizer.android.example
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.github.mikibemiki.android.example.service.ExampleServiceBound
-import com.github.mikibemiki.mppktx.service.BoundService.Companion.withService
+import com.github.kotlinizer.android.example.service.ExampleServiceBound
+import com.github.kotlinizer.mppktx.service.BoundService.Companion.withService
 import kotlinx.android.synthetic.main.activity_bound_service.*
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.flow.collect

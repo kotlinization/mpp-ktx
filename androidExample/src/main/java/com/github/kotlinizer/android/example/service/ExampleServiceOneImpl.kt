@@ -1,11 +1,11 @@
-package com.github.mikibemiki.android.example.service
+package com.github.kotlinizer.android.example.service
 
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.Binder
 import android.util.Log
-import com.github.mikibemiki.mppktx.service.BoundService
+import com.github.kotlinizer.mppktx.service.BoundService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow

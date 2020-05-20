@@ -1,16 +1,15 @@
-package com.github.mikibemiki.mppktx.service
+package com.github.kotlinizer.mppktx.service
 
 import android.content.ComponentName
 import android.content.Context
 import android.content.ServiceConnection
 import android.os.IBinder
-import com.github.mikibemiki.mppktx.coroutines.awaitNonNull
+import com.github.kotlinizer.mppktx.coroutines.awaitNonNull
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
 
 open class BoundService<B : IBinder>(
     context: Context,
@@ -41,17 +40,17 @@ open class BoundService<B : IBinder>(
 
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceDisconnected(name: ComponentName?) {
-            binderChannel.offer(null)
+            binderChannel.value = null
         }
 
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             @Suppress("UNCHECKED_CAST")
-            binderChannel.offer(service as B)
+            binderChannel.value = service as? B
         }
     }
 
     @PublishedApi
-    internal val binderChannel = ConflatedBroadcastChannel<B?>()
+    internal val binderChannel = MutableStateFlow<B?>(null)
 
     init {
         //Launch Job which waits until scope is canceled and then unbinds service
@@ -88,9 +87,9 @@ open class BoundService<B : IBinder>(
      */
     fun <T> mapFlow(block: suspend B.() -> Flow<T>): Flow<T> {
         return binderChannel
-            .asFlow()
-            .flatMapMerge {
-                block(it ?: return@flatMapMerge emptyFlow<T>())
+            .filterNotNull()
+            .flatMapLatest {
+                block(it)
             }
     }
 }

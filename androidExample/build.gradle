@@ -9,7 +9,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.nissatech.account.demo"
+        applicationId "com.github.kotlinizer.mpp"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
@@ -43,15 +43,15 @@ android {
 dependencies {
     implementation rootProject
     implementation 'androidx.activity:activity-ktx:1.1.0'
-    implementation "androidx.fragment:fragment-ktx:1.2.3"
+    implementation "androidx.fragment:fragment-ktx:1.2.4"
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.71"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:1.3.71"
+    androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:1.3.72"
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'

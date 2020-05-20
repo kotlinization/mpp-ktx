@@ -1,5 +1,5 @@
 # mpp-ktx
-[![](https://jitpack.io/v/MikibeMiki/mpp-ktx.svg)](https://jitpack.io/#MikibeMiki/mpp-ktx)
+[![](https://jitpack.io/v/kotlinizer/mpp-ktx.svg)](https://jitpack.io/#kotlinizer/mpp-ktx)
 
 Library for small functionalities usable in various settings.
 
@@ -20,4 +20,4 @@ GlobalScope.launch {
 
 # Android
 
-* Bound service [Example](./androidExample/src/main/java/com/github/mikibemiki/android/example/service/ExampleServiceOneImpl.kt)
+* Bound service [Example](./androidExample/src/main/java/com/github/kotlinizer/android/example/service/ExampleServiceOneImpl.kt)

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.github.mikibemiki.android.example.BoundServiceActivity">
+    tools:context="com.github.mikibemiki.android.example.com.github.kotlinizer.android.example.BoundServiceActivity">
 
     <TextView
         android:id="@+id/time"

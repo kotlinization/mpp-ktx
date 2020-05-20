@@ -1,4 +1,4 @@
-package com.github.mikibemiki.android.example
+package com.github.kotlinizer.android.example
 
 import android.content.Intent
 import android.os.Bundle
