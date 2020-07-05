@@ -4,12 +4,8 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.ServiceConnection
 import android.os.IBinder
-import com.github.kotlinizer.mppktx.coroutines.awaitNonNull
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.*
 
 open class BoundService<B : IBinder>(
     context: Context,
@@ -70,7 +66,7 @@ open class BoundService<B : IBinder>(
      */
     suspend fun <T> invokeDelayed(block: suspend B.() -> T): T {
         val service = withTimeout(boundTimeout) {
-            binderChannel.awaitNonNull()
+            binderChannel.filterNotNull().first()
         }
         return block(service)
     }

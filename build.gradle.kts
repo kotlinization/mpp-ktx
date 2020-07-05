@@ -29,13 +29,13 @@ apply {
 }
 
 group = "org.github.kotlinizer"
-version = "0.1.1"
+version = "0.1.2"
 
 repositories {
     mavenCentral()
 }
 
-val coroutinesVersion = "1.3.6"
+val coroutinesVersion = "1.3.7"
 
 the<LibraryExtension>().apply {
     compileSdkVersion(29)
