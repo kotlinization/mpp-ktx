@@ -5,7 +5,7 @@ Library for small functionalities usable in various settings.
 
 # Coroutines
 
-Extension function *throwIfCanceled* checks and throws corotuine is canceled.
+Extension function *throwIfCanceled* checks and throws if corotuine is canceled.
 Example:
 ```kotlin
 GlobalScope.launch {
