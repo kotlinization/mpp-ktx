@@ -5,6 +5,6 @@ import kotlinx.coroutines.CancellationException
 /**
  * Checks [this] and if its [CancellationException] throws it.
  */
-fun Throwable.throwIfCanceled() {
-    if (this is CancellationException) throw this
+fun Throwable.throwIfCanceled(): Throwable {
+    if (this is CancellationException) throw this else return this
 }
