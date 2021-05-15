@@ -51,7 +51,9 @@ interface ExampleServiceOne {
     suspend fun generateString(): String
 }
 
-class ExampleBinder(private val exampleServiceOne: ExampleServiceOne) : Binder(), ExampleServiceOne by exampleServiceOne
+class ExampleBinder(
+    private val exampleServiceOne: ExampleServiceOne
+) : Binder(), ExampleServiceOne by exampleServiceOne
 
 class ExampleServiceBound(
     context: Context,

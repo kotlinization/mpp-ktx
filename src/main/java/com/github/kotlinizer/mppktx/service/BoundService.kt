@@ -7,7 +7,7 @@ import android.os.IBinder
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-open class BoundService<B : IBinder>(
+abstract class BoundService<B : IBinder>(
     context: Context,
     scope: CoroutineScope,
     @PublishedApi
@@ -21,17 +21,22 @@ open class BoundService<B : IBinder>(
          * Creates service with temporary coroutine scope and cancels that scope
          * as soon [block] is finished.
          */
-        suspend fun <T, B : IBinder, S : BoundService<B>> withService(
+        suspend fun <T, S : BoundService<*>> withService(
             boundService: (CoroutineScope) -> S,
             block: suspend (S) -> T
-        ): T {
-            val scope = CoroutineScope(Dispatchers.IO)
-            try {
-                return block(boundService(scope))
-            } finally {
-                scope.cancel()
-            }
+        ): T = coroutineScope {
+            block(boundService(this))
         }
+
+        /**
+         * Creates service using [context] and [serviceFactory] with temporary coroutine scope
+         * and cancels that scope as soon [block] is finished.
+         */
+        suspend fun <T, S : BoundService<*>> withService(
+            context: Context,
+            serviceFactory: (Context, CoroutineScope) -> S,
+            block: suspend (S) -> T
+        ): T = withService({ serviceFactory(context, it) }, block)
     }
 
     private val serviceConnection = object : ServiceConnection {
@@ -61,8 +66,8 @@ open class BoundService<B : IBinder>(
     }
 
     /**
-     * Waits [boundTimeout] for service to bind. If it fails throws
-     * [TimeoutCancellationException]
+     * Waits [boundTimeout] for service to bind.
+     * If it fails throws [TimeoutCancellationException].
      */
     suspend fun <T> invokeDelayed(block: suspend B.() -> T): T {
         val service = withTimeout(boundTimeout) {

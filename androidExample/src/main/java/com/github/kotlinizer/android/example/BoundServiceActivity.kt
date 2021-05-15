@@ -3,9 +3,9 @@ package com.github.kotlinizer.android.example
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.github.kotlinizer.android.example.databinding.ActivityBoundServiceBinding
 import com.github.kotlinizer.android.example.service.ExampleServiceBound
 import com.github.kotlinizer.mppktx.service.BoundService.Companion.withService
-import kotlinx.android.synthetic.main.activity_bound_service.*
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -19,22 +19,34 @@ class BoundServiceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bound_service)
-        generate.setOnClickListener {
+        val binding = ActivityBoundServiceBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.generate.setOnClickListener {
             lifecycleScope.launch {
                 withService({ ExampleServiceBound(application, it) }) { exampleServiceBound ->
-                    generatedValue.text = exampleServiceBound.invokeDelayed {
+                    binding.generatedValue.text = exampleServiceBound {
                         generateString()
                     }
                 }
             }
         }
+        binding.generateSecond.setOnClickListener {
+            lifecycleScope.launch {
+                withService(application, ::ExampleServiceBound) { exampleServiceBound ->
+                    binding.generatedValue.text = exampleServiceBound {
+                        generateString()
+                    }
+                }
+            }
+        }
+
         lifecycleScope.launchWhenResumed {
             exampleServiceOne.mapFlow {
                 timeFlow
             }.collect {
                 withContext(Main) {
-                    time.text = it
+                    binding.time.text = it
                 }
             }
         }

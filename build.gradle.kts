@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.2")
+        classpath("com.android.tools.build:gradle:4.1.1")
     }
 }
 
@@ -20,7 +20,7 @@ allprojects {
 }
 
 plugins {
-    kotlin("multiplatform") version "1.4.30"
+    kotlin("multiplatform") version "1.5.0"
     `maven-publish`
 }
 
@@ -34,8 +34,6 @@ version = "0.1.3"
 repositories {
     mavenCentral()
 }
-
-val coroutinesVersion = "1.4.2"
 
 the<LibraryExtension>().apply {
     compileSdkVersion(29)
@@ -57,7 +55,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
             }
         }
         val commonTest by getting {
