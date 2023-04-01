@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "org.github.kotlinizer"
-version = "0.1.10"
+version = "0.1.11"
 
 android {
     compileSdk = 33
@@ -32,7 +32,7 @@ android {
 
 kotlin {
     jvm()
-    android()
+    android { publishAllLibraryVariants() }
     js {
         browser()
         nodejs()
