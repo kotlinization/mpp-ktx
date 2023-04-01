@@ -1,10 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 33
-
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.github.kotlinizer.mpp"
@@ -32,9 +29,6 @@ android {
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
     buildFeatures {
         viewBinding true

@@ -15,7 +15,9 @@
             android:name="com.github.kotlinizer.android.example.BoundServiceActivity"
             android:label="Bound service" />
 
-        <activity android:name="com.github.kotlinizer.android.example.MainActivity">
+        <activity
+            android:name="com.github.kotlinizer.android.example.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

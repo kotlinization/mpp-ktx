@@ -1,15 +1,5 @@
 import com.android.build.gradle.LibraryExtension
 
-buildscript {
-    repositories {
-        mavenCentral()
-        google()
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:4.1.3")
-    }
-}
-
 allprojects {
     repositories {
         mavenCentral()
@@ -18,29 +8,22 @@ allprojects {
 }
 
 plugins {
-    kotlin("multiplatform") version "1.8.0"
-    `maven-publish`
-}
-
-apply {
-    plugin("com.android.library")
+    kotlin("multiplatform") apply true
+    id("com.android.library") apply true
+    `maven-publish` apply true
 }
 
 group = "org.github.kotlinizer"
-version = "0.1.5"
-
-repositories {
-    mavenCentral()
-}
+version = "0.1.6"
 
 the<LibraryExtension>().apply {
-    compileSdkVersion(33)
+    compileSdk = 33
     defaultConfig {
-        minSdkVersion(16)
+        minSdk = 16
     }
-    lintOptions {
-        isAbortOnError = false
-        isCheckReleaseBuilds = false
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = false
     }
 }
 
@@ -61,22 +44,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-            }
-        }
-        val jvmMain by getting { }
-        val jvmTest by getting {
-            dependencies {
                 implementation(kotlin("test"))
-                implementation(kotlin("test-junit"))
-            }
-        }
-        val androidMain by getting { }
-        val androidTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-                implementation(kotlin("test-junit"))
             }
         }
     }
