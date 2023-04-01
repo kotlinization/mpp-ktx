@@ -4,10 +4,9 @@ buildscript {
     repositories {
         mavenCentral()
         google()
-        jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.1.1")
+        classpath("com.android.tools.build:gradle:4.1.3")
     }
 }
 
@@ -15,12 +14,11 @@ allprojects {
     repositories {
         mavenCentral()
         google()
-        jcenter()
     }
 }
 
 plugins {
-    kotlin("multiplatform") version "1.5.0"
+    kotlin("multiplatform") version "1.8.0"
     `maven-publish`
 }
 
@@ -29,15 +27,14 @@ apply {
 }
 
 group = "org.github.kotlinizer"
-version = "0.1.3"
+version = "0.1.5"
 
 repositories {
     mavenCentral()
 }
 
 the<LibraryExtension>().apply {
-    compileSdkVersion(29)
-    buildToolsVersion = "29.0.3"
+    compileSdkVersion(33)
     defaultConfig {
         minSdkVersion(16)
     }
@@ -52,10 +49,14 @@ kotlin {
     android {
         publishLibraryVariants("debug", "release")
     }
+    js {
+        browser()
+        nodejs()
+    }
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
             }
         }
         val commonTest by getting {
