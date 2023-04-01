@@ -8,11 +8,11 @@ allprojects {
 plugins {
     kotlin("multiplatform") apply true
     id("com.android.library") apply true
-    `maven-publish` apply true
+    id("com.vanniktech.maven.publish.base") apply true
 }
 
 group = "org.github.kotlinizer"
-version = "0.1.12"
+version = "0.1.13"
 
 android {
     compileSdk = 33

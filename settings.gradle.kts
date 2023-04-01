@@ -10,6 +10,7 @@ pluginManagement {
         kotlin("android").version(extra["kotlin.version"] as String)
         id("com.android.application").version(extra["agp.version"] as String)
         id("com.android.library").version(extra["agp.version"] as String)
+        id("com.vanniktech.maven.publish.base").version("0.25.1")
     }
 }
 
