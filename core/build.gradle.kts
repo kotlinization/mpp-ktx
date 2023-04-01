@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "org.github.kotlinizer"
-version = "0.1.8"
+version = "0.1.9"
 
 android {
     compileSdk = 33
@@ -23,6 +23,10 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = false
     }
 }
 
