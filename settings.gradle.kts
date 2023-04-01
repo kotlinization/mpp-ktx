@@ -15,4 +15,4 @@ pluginManagement {
 
 rootProject.name = "mpp-ktx"
 
-include(":androidExample")
+include(":core", ":androidExample")

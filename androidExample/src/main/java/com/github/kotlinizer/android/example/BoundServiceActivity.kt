@@ -7,7 +7,6 @@ import com.github.kotlinizer.android.example.databinding.ActivityBoundServiceBin
 import com.github.kotlinizer.android.example.service.ExampleServiceBound
 import com.github.kotlinizer.mppktx.service.BoundService.Companion.withService
 import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
