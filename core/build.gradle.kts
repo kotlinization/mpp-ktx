@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "org.github.kotlinizer"
-version = "0.1.11"
+version = "0.1.12"
 
 android {
     compileSdk = 33
@@ -33,10 +33,6 @@ android {
 kotlin {
     jvm()
     android { publishAllLibraryVariants() }
-    js {
-        browser()
-        nodejs()
-    }
     sourceSets {
         val commonMain by getting {
             dependencies {
