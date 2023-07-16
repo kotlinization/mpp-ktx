@@ -1,48 +1,48 @@
 allprojects {
-    repositories {
-        mavenCentral()
-        google()
-    }
+  repositories {
+    mavenCentral()
+    google()
+  }
 }
 
 plugins {
-    kotlin("multiplatform") apply true
-    id("com.android.library") apply true
-    id("com.vanniktech.maven.publish.base") apply true
+  kotlin("multiplatform") apply true
+  alias(libs.plugins.androidLibrary)
+  alias(libs.plugins.mavenPublish) apply true
 }
 
 group = "org.github.kotlinizer"
-version = "0.1.13"
+version = rootProject.extra["versionName"].toString()
 
 android {
-    compileSdk = 33
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = 16
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    lint {
-        abortOnError = false
-        checkReleaseBuilds = false
-    }
+  compileSdk = libs.versions.compileSdk.get().toInt()
+  sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+  defaultConfig {
+    minSdk = libs.versions.minSdk.get().toInt()
+  }
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+  lint {
+    abortOnError = false
+    checkReleaseBuilds = false
+  }
 }
 
 kotlin {
-    jvm()
-    android { publishAllLibraryVariants() }
-    sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-            }
-        }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
+  jvm()
+  android { publishAllLibraryVariants() }
+  sourceSets {
+    val commonMain by getting {
+      dependencies {
+        implementation(libs.kotlinxCoroutinesCore)
+      }
     }
+    val commonTest by getting {
+      dependencies {
+        implementation(kotlin("test"))
+      }
+    }
+  }
 }

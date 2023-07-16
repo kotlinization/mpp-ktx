@@ -1,57 +1,55 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+  alias(libs.plugins.androidApplication)
+  kotlin("android")
 }
 
-
 android {
-    compileSdk = 33
+  compileSdk = libs.versions.compileSdk.get().toInt()
 
-    defaultConfig {
-        applicationId = "com.github.kotlinizer.mpp"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+  defaultConfig {
+    applicationId = "com.github.kotlinizer.mpp"
+    minSdk = libs.versions.minSdk.get().toInt()
+    targetSdk = libs.versions.targetSdk.get().toInt()
+    versionCode = 1
+    versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+  }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
+  buildTypes {
+    release {
+      isMinifyEnabled = false
+      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+  }
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+  kotlinOptions {
+    jvmTarget = "17"
+  }
+  buildFeatures {
+    viewBinding = true
+  }
+  packagingOptions {
+    resources {
+      excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        viewBinding = true
-    }
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    lint {
-        abortOnError = false
-        checkReleaseBuilds = false
-    }
+  }
+  lint {
+    abortOnError = false
+    checkReleaseBuilds = false
+  }
 }
 
 dependencies {
-    implementation(project(":core"))
-    implementation("androidx.activity:activity-ktx:1.7.0")
-    implementation("androidx.fragment:fragment-ktx:1.5.6")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+  implementation(project(":core"))
+  implementation(libs.androidxActivity)
+  implementation(libs.androidxAppCompat)
+  implementation(libs.androidxConstraintLayout)
+  implementation(libs.androidxFragment)
+  implementation(libs.androidxLifecycleExt)
+  implementation(libs.androidxLifecycleLiveData)
+  implementation(libs.androidxLifecycleViewModel)
 }

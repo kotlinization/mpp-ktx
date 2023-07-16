@@ -1,12 +1,13 @@
 allprojects {
-    repositories {
-        mavenCentral()
-        google()
-    }
+  repositories {
+    mavenCentral()
+    google()
+  }
 }
 
 plugins {
-    kotlin("multiplatform") apply false
-    id("com.android.library") apply false
-    id("com.vanniktech.maven.publish.base") apply false
+  kotlin("multiplatform") version libs.versions.kotlin apply false
+  alias(libs.plugins.androidApplication) apply false
+  alias(libs.plugins.androidLibrary) apply false
+  alias(libs.plugins.mavenPublish) apply false
 }

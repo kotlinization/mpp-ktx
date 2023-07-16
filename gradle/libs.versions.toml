@@ -1,0 +1,37 @@
+[versions]
+
+# Config
+minSdk = "16"
+compileSdk = "33"
+targetSdk = "33"
+
+# Plugins
+kotlin = "1.8.0"
+agp = "7.4.1"
+mavenPublish = "0.25.1"
+
+#Libraries
+androidxActivity = "1.7.0"
+androidxConstraintLayout = "2.1.4"
+androidxFragment = "1.5.6"
+androidxLifecycle = "2.6.1"
+androidxLifecycleExt = "2.2.0"
+androidxAppCompat = "1.6.1"
+
+kotlinxCoroutines = "1.6.4"
+
+[libraries]
+androidxActivity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivity" }
+androidxAppCompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppCompat" }
+androidxConstraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidxConstraintLayout" }
+androidxFragment = { module = "androidx.fragment:fragment-ktx", version.ref = "androidxFragment" }
+androidxLifecycleLiveData = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
+androidxLifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
+androidxLifecycleExt = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "androidxLifecycleExt" }
+
+kotlinxCoroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+mavenPublish = { id = "com.vanniktech.maven.publish.base", version.ref = "mavenPublish" }
