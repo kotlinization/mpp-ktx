@@ -18,7 +18,7 @@ androidxLifecycle = "2.6.1"
 androidxLifecycleExt = "2.2.0"
 androidxAppCompat = "1.6.1"
 
-kotlinxCoroutines = "1.6.4"
+kotlinxCoroutines = "1.7.2"
 
 [libraries]
 androidxActivity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivity" }
