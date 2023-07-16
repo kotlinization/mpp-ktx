@@ -7,7 +7,7 @@ targetSdk = "33"
 
 # Plugins
 kotlin = "1.8.0"
-agp = "7.4.1"
+agp = "8.0.2"
 mavenPublish = "0.25.1"
 
 #Libraries
