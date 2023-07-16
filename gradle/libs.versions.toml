@@ -8,7 +8,7 @@ targetSdk = "33"
 # Plugins
 kotlin = "1.8.0"
 agp = "7.4.1"
-mavenPublish = "0.25.1"
+mavenPublish = "0.25.3"
 
 #Libraries
 androidxActivity = "1.7.0"
