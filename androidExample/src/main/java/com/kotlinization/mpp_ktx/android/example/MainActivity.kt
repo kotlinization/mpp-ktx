@@ -1,9 +1,10 @@
-package com.github.kotlinizer.android.example
+package com.kotlinization.mpp_ktx.android.example
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.kotlinizer.android.example.databinding.ActivityMainBinding
+import com.kotlinization.mpp_ktx.android.example.service.BoundServiceActivity
 
 
 class MainActivity : AppCompatActivity() {
