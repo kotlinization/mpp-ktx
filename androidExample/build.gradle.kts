@@ -1,55 +1,49 @@
 plugins {
-  alias(libs.plugins.androidApplication)
-  kotlin("android")
+    alias(libs.plugins.androidApplication)
+    kotlin("android")
 }
 
 android {
-  compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
-  defaultConfig {
-    applicationId = "com.github.kotlinizer.mpp"
-    minSdk = libs.versions.minSdk.get().toInt()
-    targetSdk = libs.versions.targetSdk.get().toInt()
-    versionCode = 1
-    versionName = "1.0"
+    defaultConfig {
+        applicationId = "com.kotlinization.mpp_ktx"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = 1
+        versionName = "1.0"
 
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-  }
-
-  buildTypes {
-    release {
-      isMinifyEnabled = false
-      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-  }
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-  }
-  kotlinOptions {
-    jvmTarget = "17"
-  }
-  buildFeatures {
-    viewBinding = true
-  }
-  packagingOptions {
-    resources {
-      excludes += "/META-INF/{AL2.0,LGPL2.1}"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
-  }
-  lint {
-    abortOnError = false
-    checkReleaseBuilds = false
-  }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = false
+    }
 }
 
 dependencies {
-  implementation(project(":core"))
-  implementation(libs.androidxActivity)
-  implementation(libs.androidxAppCompat)
-  implementation(libs.androidxConstraintLayout)
-  implementation(libs.androidxFragment)
-  implementation(libs.androidxLifecycleExt)
-  implementation(libs.androidxLifecycleLiveData)
-  implementation(libs.androidxLifecycleViewModel)
+    implementation(project(":core"))
+    implementation(libs.androidxActivity)
+    implementation(libs.androidxAppCompat)
+    implementation(libs.androidxConstraintLayout)
+    implementation(libs.androidxFragment)
+    implementation(libs.androidxLifecycleExt)
+    implementation(libs.androidxLifecycleLiveData)
+    implementation(libs.androidxLifecycleViewModel)
 }

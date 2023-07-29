@@ -1,4 +1,4 @@
-package com.github.kotlinizer.mppktx.coroutines
+package com.kotlinization.mpp_ktx.extension
 
 import kotlinx.coroutines.CancellationException
 

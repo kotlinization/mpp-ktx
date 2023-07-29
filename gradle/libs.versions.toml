@@ -6,19 +6,19 @@ compileSdk = "33"
 targetSdk = "33"
 
 # Plugins
-kotlin = "1.8.0"
+kotlin = "1.9.0"
 agp = "7.4.1"
 mavenPublish = "0.25.3"
 
 #Libraries
 androidxActivity = "1.7.2"
 androidxConstraintLayout = "2.1.4"
-androidxFragment = "1.6.0"
+androidxFragment = "1.6.1"
 androidxLifecycle = "2.6.1"
 androidxLifecycleExt = "2.2.0"
 androidxAppCompat = "1.6.1"
 
-kotlinxCoroutines = "1.7.2"
+kotlinxCoroutines = "1.7.3"
 
 [libraries]
 androidxActivity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivity" }

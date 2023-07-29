@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.github.kotlinizer.android.example">
+    package="com.kotlinization.mpp_ktx.android.example">
 
     <application
         android:allowBackup="false"
@@ -12,11 +12,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="com.github.kotlinizer.android.example.BoundServiceActivity"
+            android:name=".service.BoundServiceActivity"
             android:label="Bound service" />
 
         <activity
-            android:name="com.github.kotlinizer.android.example.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
         </activity>
 
         <service
-            android:name="com.github.kotlinizer.android.example.service.ExampleServiceOneImpl"
+            android:name=".service.ExampleServiceOneImpl"
             android:enabled="true"
             android:exported="false" />
     </application>

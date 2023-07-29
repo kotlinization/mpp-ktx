@@ -1,11 +1,11 @@
-package com.github.kotlinizer.android.example
+package com.kotlinization.mpp_ktx.android.example.service
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.github.kotlinizer.android.example.databinding.ActivityBoundServiceBinding
-import com.github.kotlinizer.android.example.service.ExampleServiceBound
-import com.github.kotlinizer.mppktx.service.BoundService.Companion.withService
+import com.kotlinization.mpp_ktx.android.example.service.ExampleServiceBound
+import com.kotlinization.kotlinizer.mpp_ktx.service.BoundService.Companion.withService
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
