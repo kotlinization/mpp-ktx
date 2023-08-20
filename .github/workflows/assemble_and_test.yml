@@ -14,7 +14,7 @@ env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx6g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
 
 jobs:
-  assembe-library:
+  assemble-and-test:
 
     runs-on: ubuntu-latest
 
@@ -30,5 +30,4 @@ jobs:
         timeout-minutes: 5
         continue-on-error: true
 
-      - run: ./gradlew clean assemble
-      - run: ./gradlew clean publishToMavenLocal
+      - run: ./gradlew clean assemble test
