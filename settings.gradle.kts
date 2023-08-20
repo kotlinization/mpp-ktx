@@ -6,4 +6,4 @@ pluginManagement {
     }
 }
 
-include(":core", ":androidExample")
+include(":mpp_ktx", ":androidExample")

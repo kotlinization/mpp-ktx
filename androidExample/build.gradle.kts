@@ -38,7 +38,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(project(":mpp_ktx"))
     implementation(libs.androidxActivity)
     implementation(libs.androidxAppCompat)
     implementation(libs.androidxConstraintLayout)

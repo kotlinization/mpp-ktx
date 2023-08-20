@@ -8,7 +8,7 @@ targetSdk = "33"
 # Plugins
 kotlin = "1.9.0"
 agp = "7.4.1"
-mavenPublish = "0.25.3"
+nexusPublish = "2.0.0-rc-1"
 
 #Libraries
 androidxActivity = "1.7.2"
@@ -34,4 +34,4 @@ kotlinxCoroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-cor
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-mavenPublish = { id = "com.vanniktech.maven.publish.base", version.ref = "mavenPublish" }
+nexusPublish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexusPublish" }
