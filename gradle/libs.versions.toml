@@ -7,7 +7,7 @@ targetSdk = "33"
 
 # Plugins
 kotlin = "1.9.0"
-agp = "7.4.1"
+agp = "8.1.0"
 nexusPublish = "2.0.0-rc-1"
 
 #Libraries
