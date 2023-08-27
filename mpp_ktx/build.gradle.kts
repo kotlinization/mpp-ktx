@@ -32,7 +32,7 @@ android {
 
 kotlin {
     jvm()
-    android { publishAllLibraryVariants() }
+    androidTarget() { publishAllLibraryVariants() }
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -47,3 +47,34 @@ kotlin {
     }
 }
 
+publishing {
+    publications {
+        withType<MavenPublication> {
+            pom {
+                name.set("mpp_ktx")
+                description.set("Utilities components for various Kotlinization projects.")
+                licenses {
+                    license {
+                        name.set("Apache-2.0")
+                        url.set("https://opensource.org/license/apache-2-0/")
+                    }
+                }
+                url.set("https://kotlinization.com/mpp-ktx")
+                issueManagement {
+                    system.set("Github")
+                    url.set("https://github.com/kotlinization/mpp-ktx/issues")
+                }
+                scm {
+                    connection.set("https://github.com/kotlinization/mpp-ktx.git")
+                    url.set("https://github.com/kotlinization/mpp-ktx")
+                }
+                developers {
+                    developer {
+                        name.set("Milan Jovic")
+                        email.set("milanjovic92@live.com")
+                    }
+                }
+            }
+        }
+    }
+}
