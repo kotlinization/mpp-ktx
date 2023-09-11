@@ -14,7 +14,7 @@ nexusPublish = "2.0.0-rc-1"
 androidxActivity = "1.7.2"
 androidxConstraintLayout = "2.1.4"
 androidxFragment = "1.6.1"
-androidxLifecycle = "2.6.1"
+androidxLifecycle = "2.6.2"
 androidxLifecycleExt = "2.2.0"
 androidxAppCompat = "1.6.1"
 
