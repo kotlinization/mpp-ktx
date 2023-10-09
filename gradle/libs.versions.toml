@@ -11,7 +11,7 @@ agp = "7.4.1"
 nexusPublish = "2.0.0-rc-1"
 
 #Libraries
-androidxActivity = "1.7.2"
+androidxActivity = "1.8.0"
 androidxConstraintLayout = "2.1.4"
 androidxFragment = "1.6.1"
 androidxLifecycle = "2.6.1"
